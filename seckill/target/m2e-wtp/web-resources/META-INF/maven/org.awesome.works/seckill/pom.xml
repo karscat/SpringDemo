@@ -7,10 +7,11 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>seckill Maven Webapp</name>
 	<url>http://maven.apache.org</url>
-	
+
 	<properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  <!-- 指定UTF-8编码 -->
-    </properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  <!-- 指定UTF-8编码 -->
+		<spring.version>4.3.7.RELEASE</spring.version><!-- Spring 版本号 -->
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -86,6 +87,11 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
 		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.2</version>
+		</dependency>
 		<!-- 4、Spring依赖 -->
 		<!-- 1)spring核心依赖 -->
 		<dependency>
@@ -131,6 +137,23 @@
 			<artifactId>spring-test</artifactId>
 			<version>4.3.7.RELEASE</version>
 		</dependency>
+		<!-- 引入Redis客户端 -->
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>2.9.0</version>
+		</dependency>
+		<!-- 自定义序列化依赖 -->
+		<dependency>
+			<groupId>com.dyuproject.protostuff</groupId>
+			<artifactId>protostuff-core</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.dyuproject.protostuff</groupId>
+			<artifactId>protostuff-runtime</artifactId>
+			<version>1.1.1</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>seckill</finalName>
@@ -140,25 +163,14 @@
 				<configuration>
 					<source>1.8</source>        <!-- 指定jdk版本, 可避免update project时, 自动切换低版本 -->
 					<target>1.8</target>
-					<skip>true</skip>		
+					<skip>true</skip>
 				</configuration>
 			</plugin>
-<!-- 			<plugin> 
-				<groupId>org.apache.maven.plugins</groupId> 
-				<artifactId>maven-war-plugin</artifactId> 
-				<version>2.2</version> 
-				<configuration> 
-				<warName>seckill</warName> 
-				<archiveClasses>true</archiveClasses> 
-				<webResources> 
-					<resource>	
-					this is relative to the pom.xml directory
-					<directory>WebRoot</directory>
-					</resource>
-				</webResources> 
-				</configuration> 
-			</plugin> -->
-			
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-war-plugin</artifactId> 
+				<version>2.2</version> <configuration> <warName>seckill</warName> <archiveClasses>true</archiveClasses> 
+				<webResources> <resource> this is relative to the pom.xml directory <directory>WebRoot</directory> 
+				</resource> </webResources> </configuration> </plugin> -->
+
 		</plugins>
 	</build>
 </project>
